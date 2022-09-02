@@ -4,10 +4,22 @@ cordapp {
     targetPlatformVersion corda_platform_version
     minimumPlatformVersion corda_platform_version
     contract {
-        name "Template Contracts"
-        vendor "Corda Open Source"
-        licence "Apache License, Version 2.0"
+        name "Ping Contracts"
+        vendor "AFBlockchain"
+        licence "MIT License"
         versionId 1
+    }
+    signing {
+        enabled true
+        options {
+            Properties signing = new Properties()
+            file("$projectDir/../signing.properties").withInputStream { signing.load(it) }
+            keystore signing.getProperty("jar.sign.keystore")
+            alias signing.getProperty("jar.sign.alias")
+            storepass signing.getProperty("jar.sign.storepass")
+            keypass signing.getProperty("jar.sign.keypass")
+            storetype "PKCS12"
+        }
     }
 }
 

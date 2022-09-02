@@ -22,3 +22,11 @@ flow start Pong pong: "Hi! How are u doing, PartyA?", uuid: 43251254-66c4-45ee-9
 ```
 
 If both flow succeeded, the network connectivity should be good.
+
+## CorDapp Signing
+
+This CorDapp configured gradle for signing CorDapp jars for production deployment. To sign, configure [signing.properties](./signing.properties) to point gradle to the correct configuration. The `gradlew jar` command will automatically sign the contract jar. To verify, run:
+
+```shell
+jarsigner -verify -verbose -keystore <path-to-keystore> contracts/build/libs/contracts-0.1.jar
+```
