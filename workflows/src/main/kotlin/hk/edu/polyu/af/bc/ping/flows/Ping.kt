@@ -17,7 +17,8 @@ import net.corda.core.transactions.TransactionBuilder
 @InitiatingFlow
 class Ping(
     private val ping: String,
-    private val to: Party
+    private val to: Party,
+    private val notary: Party
 ) : FlowLogic<String>() {
     @Suspendable
     override fun call(): String {
@@ -30,7 +31,7 @@ class Ping(
             ponger = to
         )
 
-        val builder = TransactionBuilder(serviceHub.networkMapCache.notaryIdentities[0])
+        val builder = TransactionBuilder(notary)
             .addCommand(PingContract.Commands.Ping(), ourIdentity.owningKey)
             .addOutputState(output)
 

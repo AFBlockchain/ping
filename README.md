@@ -11,7 +11,7 @@ Say there are two parties on the network (and some notary service).
 Ping from PartyA to PartyB:
 ```shell
 # In PartyA shell
-flow start Ping ping: "Hello PartyB", to: PartyA
+flow start Ping ping: "Hello PartyB", to: PartyA, notary: Notary
 ```
 The flow returns an identifier of the bootstrapped `PingState`, for example `43251254-66c4-45ee-9e0f-360a8f7df078`.
 
